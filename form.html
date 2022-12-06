@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <form name="myform" action="response.html" method="get" onsubmit="return validateform()">
+        Name:<input type="text" name="name">
+        Phone: <input type="number" name="phno">
+        Password: <input type="password" name="password">
+        <input type="submit" value="register">
+    </form>
+</body>
+<script>
+    function validateform()
+        {
+            var name=document.myform.name.value;
+            var phno=document.myform.phno.value;
+            var password=document.myform.password.value;
+            if(name==null||name=="")
+                {
+                    alert("Name can't be blank")
+                    return false;
+                }
+            var letters = /^[a-zA-Z]+$/;
+            if(!name.match(letters))
+                {
+                    alert('Please input characters only');
+                    return false;
+                }
+            if(phno.length<10)
+                {
+                    alert("Phone Number must be of 10 digits only");
+                    return false;
+                }
+            if(password.length<8)
+                {
+                    alert("Password must be of at least 8 characters long");
+                    return false;
+                }
+        }
+</script>
+</html>
