@@ -4,43 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
+    <title>Javascript Cookies</title>
+    <link rel="stylesheet" href="cookies.css">
 </head>
 <body>
-    <form name="myform" action="response.html" method="get" onsubmit="return validateform()">
-        Name:<input type="text" name="name">
-        Phone: <input type="number" name="phno">
-        Password: <input type="password" name="password">
-        <input type="submit" value="register">
-    </form>
+    <nav class="navbar navbar-dark" style="background-color: #031d30;">
+        <div class="container-fluid">
+          <a class="navbar-brand codemia" href="#text">
+            Codemia
+          </a>
+          <ul class="nav navbar-nav">
+            <li class="nav-item help" style="color: white;">Help <i class="bi bi-info-circle-fill"></i></li>    
+            </ul>
+        </div>
+      </nav>
+      <br>
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6 box">
+                    <h3>Codemia Interactive Box</h3>
+                    <div class="form1">
+                    <form action="" name="cookie">
+                        <label class="form-label">Name : </label>
+                        <input type="text" class="form-control" name="name" placeholder="eg : Darpan"/>
+                        <br>
+                        <br>
+             
+                        <button type="button" class="btn btn-info" 
+                               onclick="setCookies();">Set</button>
+                        <button type="button" class="btn btn-success"
+                               onclick="showCookies();">Show</button>
+                        <button type="button" class="btn btn-danger"
+                               onclick="DelCookies();">Delete</button>
+                    </form>
+                    <br>
+                    <span id="ShowC">Hii User</span>
+                </div>
+            </div>
+    
 </body>
-<script>
-    function validateform()
+<script type="text/javascript">
+        
+    function setCookies() {
+
+        
+        cookieVal = document.cookie.name.value ;
+        document.cookie = "name = " + cookieVal+"; path=/;";
+    }
+
+    function showCookies() {
+
+        if(cookieVal!="")
         {
-            var name=document.myform.name.value;
-            var phno=document.myform.phno.value;
-            var password=document.myform.password.value;
-            if(name==null||name=="")
-                {
-                    alert("Name can't be blank")
-                    return false;
-                }
-            var letters = /^[a-zA-Z]+$/;
-            if(!name.match(letters))
-                {
-                    alert('Please input characters only');
-                    return false;
-                }
-            if(phno.length<10)
-                {
-                    alert("Phone Number must be of 10 digits only");
-                    return false;
-                }
-            if(password.length<8)
-                {
-                    alert("Password must be of at least 8 characters long");
-                    return false;
-                }
+            document.getElementById("ShowC").innerHTML =
+          ("Hello " + cookieVal + ", We welcome you to our website");
         }
+        else
+        {
+            document.getElementById("ShowC").innerHTML = "Cookies are deleted! Press Set to set cookies again";
+        }
+        
+    }
+    function DelCookies() {
+        cookieVal="";
+        document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        alert("Cookie Deleted! ");
+    }
 </script>
 </html>
